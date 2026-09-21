@@ -1,0 +1,379 @@
+[
+  {
+    "axis": "F",
+    "name": "insert",
+    "engine": "c2db",
+    "n": 128,
+    "ns_per_op": 98827.2109375,
+    "proof": "GetDoc==Insert bit-exact",
+    "kernel": {
+      "user_ns": 9760000,
+      "sys_ns": 1217000,
+      "max_rss_kb": 47248,
+      "min_flt": 430,
+      "maj_flt": 0,
+      "nvcsw": 62,
+      "nivcsw": 4,
+      "sysc_read": 8,
+      "sysc_write": 5,
+      "read_bytes": 0,
+      "write_bytes": 20480
+    },
+    "l1": {
+      "cycles": 2355111,
+      "instructions": 4051424,
+      "branches": 811833,
+      "branch_misses": 4537,
+      "l1d_misses": 12753,
+      "ipc": 1.7202688111091156,
+      "ok": true
+    },
+    "asm_call": 19,
+    "asm_file": "/devhoros/c2simd/c2pkg/c2db/bench_asm/putBody.s"
+  },
+  {
+    "axis": "F",
+    "name": "insert",
+    "engine": "sqlite",
+    "n": 128,
+    "ns_per_op": 621489.578125,
+    "proof": "INSERT kv",
+    "kernel": {
+      "user_ns": 4394000,
+      "sys_ns": 6950000,
+      "max_rss_kb": 47248,
+      "min_flt": 44,
+      "maj_flt": 0,
+      "nvcsw": 578,
+      "nivcsw": 0,
+      "sysc_read": 7,
+      "sysc_write": 528,
+      "read_bytes": 0,
+      "write_bytes": 1667072
+    },
+    "l1": {
+      "cycles": 9211946,
+      "instructions": 5726152,
+      "branches": 963342,
+      "branch_misses": 27760,
+      "l1d_misses": 74333,
+      "ipc": 0.6216006911026183,
+      "ok": true
+    }
+  },
+  {
+    "axis": "F",
+    "name": "get",
+    "engine": "c2db",
+    "n": 128,
+    "ns_per_op": 3027.1171875,
+    "proof": "pinLive+GetAsOf",
+    "kernel": {
+      "user_ns": 407000,
+      "sys_ns": 0,
+      "max_rss_kb": 47248,
+      "min_flt": 1,
+      "maj_flt": 0,
+      "nvcsw": 0,
+      "nivcsw": 0,
+      "sysc_read": 7,
+      "sysc_write": 0,
+      "read_bytes": 0,
+      "write_bytes": 0
+    },
+    "l1": {
+      "cycles": 1881829,
+      "instructions": 8870519,
+      "branches": 3145773,
+      "branch_misses": 1550,
+      "l1d_misses": 274,
+      "ipc": 4.7137752686349295,
+      "ok": true
+    },
+    "asm_call": 6,
+    "asm_file": "/devhoros/c2simd/c2pkg/c2db/bench_asm/GetAsOf.s"
+  },
+  {
+    "axis": "F",
+    "name": "get",
+    "engine": "sqlite",
+    "n": 128,
+    "ns_per_op": 5919.8515625,
+    "proof": "SELECT by key",
+    "kernel": {
+      "user_ns": 589000,
+      "sys_ns": 185000,
+      "max_rss_kb": 47248,
+      "min_flt": 26,
+      "maj_flt": 0,
+      "nvcsw": 0,
+      "nivcsw": 0,
+      "sysc_read": 7,
+      "sysc_write": 0,
+      "read_bytes": 0,
+      "write_bytes": 0
+    },
+    "l1": {
+      "cycles": 3257295,
+      "instructions": 7164878,
+      "branches": 1408021,
+      "branch_misses": 3664,
+      "l1d_misses": 52296,
+      "ipc": 2.1996404992486096,
+      "ok": true
+    }
+  },
+  {
+    "axis": "F",
+    "name": "scan_filter",
+    "engine": "c2db",
+    "n": 1,
+    "ns_per_op": 790739,
+    "proof": "filter eq status=open N\u003e0",
+    "kernel": {
+      "user_ns": 0,
+      "sys_ns": 302000,
+      "max_rss_kb": 47248,
+      "min_flt": 13,
+      "maj_flt": 0,
+      "nvcsw": 4,
+      "nivcsw": 0,
+      "sysc_read": 7,
+      "sysc_write": 3,
+      "read_bytes": 0,
+      "write_bytes": 24576
+    },
+    "l1": {
+      "cycles": 1105828,
+      "instructions": 3031443,
+      "branches": 521114,
+      "branch_misses": 5018,
+      "l1d_misses": 3380,
+      "ipc": 2.741333191056837,
+      "ok": true
+    }
+  },
+  {
+    "axis": "F",
+    "name": "cas",
+    "engine": "c2db",
+    "n": 1,
+    "ns_per_op": 776986,
+    "proof": "rejet expect puis RecMut",
+    "kernel": {
+      "user_ns": 0,
+      "sys_ns": 282000,
+      "max_rss_kb": 47248,
+      "min_flt": 5,
+      "maj_flt": 0,
+      "nvcsw": 10,
+      "nivcsw": 0,
+      "sysc_read": 7,
+      "sysc_write": 3,
+      "read_bytes": 0,
+      "write_bytes": 24576
+    },
+    "l1": {
+      "cycles": 1024711,
+      "instructions": 2680527,
+      "branches": 422115,
+      "branch_misses": 2342,
+      "l1d_misses": 2370,
+      "ipc": 2.6158858448869973,
+      "ok": true
+    },
+    "asm_call": 59,
+    "asm_file": "/devhoros/c2simd/c2pkg/c2db/bench_asm/publish.s"
+  },
+  {
+    "axis": "F",
+    "name": "lot",
+    "engine": "c2db",
+    "n": 2,
+    "ns_per_op": 385555.5,
+    "proof": "2 ins un fdatasync",
+    "kernel": {
+      "user_ns": 84000,
+      "sys_ns": 219000,
+      "max_rss_kb": 47248,
+      "min_flt": 1,
+      "maj_flt": 0,
+      "nvcsw": 14,
+      "nivcsw": 0,
+      "sysc_read": 7,
+      "sysc_write": 3,
+      "read_bytes": 0,
+      "write_bytes": 24576
+    },
+    "l1": {
+      "cycles": 1194572,
+      "instructions": 3200453,
+      "branches": 547991,
+      "branch_misses": 1991,
+      "l1d_misses": 4407,
+      "ipc": 2.6791629135790895,
+      "ok": true
+    },
+    "asm_call": 10,
+    "asm_file": "/devhoros/c2simd/c2pkg/c2db/bench_asm/writeOne.s"
+  },
+  {
+    "axis": "F",
+    "name": "view",
+    "engine": "c2db",
+    "n": 1,
+    "ns_per_op": 58511,
+    "proof": "View gelé v1 pendant Put v2",
+    "kernel": {
+      "user_ns": 40000,
+      "sys_ns": 41000,
+      "max_rss_kb": 47248,
+      "min_flt": 5,
+      "maj_flt": 0,
+      "nvcsw": 2,
+      "nivcsw": 0,
+      "sysc_read": 7,
+      "sysc_write": 0,
+      "read_bytes": 0,
+      "write_bytes": 0
+    },
+    "l1": {
+      "cycles": 221730,
+      "instructions": 448415,
+      "branches": 97593,
+      "branch_misses": 430,
+      "l1d_misses": 917,
+      "ipc": 2.022346998601903,
+      "ok": true
+    },
+    "asm_file": "/devhoros/c2simd/c2pkg/c2db/bench_asm/pinLive.s"
+  },
+  {
+    "axis": "D",
+    "name": "json_large",
+    "engine": "c2db",
+    "n": 8,
+    "ns_per_op": 46821.75,
+    "proof": "Insert 512B",
+    "kernel": {
+      "user_ns": 199000,
+      "sys_ns": 207000,
+      "max_rss_kb": 47248,
+      "min_flt": 19,
+      "maj_flt": 0,
+      "nvcsw": 5,
+      "nivcsw": 0,
+      "sysc_read": 7,
+      "sysc_write": 0,
+      "read_bytes": 0,
+      "write_bytes": 0
+    },
+    "l1": {
+      "cycles": 1924224,
+      "instructions": 4342644,
+      "branches": 985836,
+      "branch_misses": 1581,
+      "l1d_misses": 9834,
+      "ipc": 2.2568287268010376,
+      "ok": true
+    },
+    "asm_call": 19,
+    "asm_file": "/devhoros/c2simd/c2pkg/c2db/bench_asm/putBody.s"
+  },
+  {
+    "axis": "D",
+    "name": "uuid_overlay",
+    "engine": "c2db",
+    "n": 32,
+    "ns_per_op": 62540.625,
+    "proof": "KindOf==IDKindPut",
+    "kernel": {
+      "user_ns": 1192000,
+      "sys_ns": 337000,
+      "max_rss_kb": 47248,
+      "min_flt": 3,
+      "maj_flt": 0,
+      "nvcsw": 31,
+      "nivcsw": 0,
+      "sysc_read": 7,
+      "sysc_write": 1,
+      "read_bytes": 0,
+      "write_bytes": 8192
+    },
+    "l1": {
+      "cycles": 7539654,
+      "instructions": 16429705,
+      "branches": 3842028,
+      "branch_misses": 3790,
+      "l1d_misses": 38389,
+      "ipc": 2.1791059642789974,
+      "ok": true
+    },
+    "asm_call": 19,
+    "asm_file": "/devhoros/c2simd/c2pkg/c2db/bench_asm/putBody.s"
+  },
+  {
+    "axis": "D",
+    "name": "recmut",
+    "engine": "c2db",
+    "n": 1,
+    "ns_per_op": 1456535,
+    "proof": "cas op=3 incr",
+    "kernel": {
+      "user_ns": 390000,
+      "sys_ns": 0,
+      "max_rss_kb": 47248,
+      "min_flt": 4,
+      "maj_flt": 0,
+      "nvcsw": 12,
+      "nivcsw": 0,
+      "sysc_read": 7,
+      "sysc_write": 6,
+      "read_bytes": 0,
+      "write_bytes": 49152
+    },
+    "l1": {
+      "cycles": 1409398,
+      "instructions": 5684150,
+      "branches": 986815,
+      "branch_misses": 3112,
+      "l1d_misses": 3959,
+      "ipc": 4.033033962017826,
+      "ok": true
+    },
+    "asm_call": 59,
+    "asm_file": "/devhoros/c2simd/c2pkg/c2db/bench_asm/publish.s"
+  },
+  {
+    "axis": "D",
+    "name": "cow_grow",
+    "engine": "c2db",
+    "n": 64,
+    "ns_per_op": 67549.109375,
+    "proof": "heapUsed croît",
+    "kernel": {
+      "user_ns": 3278000,
+      "sys_ns": 0,
+      "max_rss_kb": 47248,
+      "min_flt": 52,
+      "maj_flt": 0,
+      "nvcsw": 7,
+      "nivcsw": 0,
+      "sysc_read": 7,
+      "sysc_write": 2,
+      "read_bytes": 0,
+      "write_bytes": 8192
+    },
+    "l1": {
+      "cycles": 13549093,
+      "instructions": 32335742,
+      "branches": 7503150,
+      "branch_misses": 7392,
+      "l1d_misses": 156003,
+      "ipc": 2.38656137351777,
+      "ok": true
+    },
+    "asm_call": 59,
+    "asm_file": "/devhoros/c2simd/c2pkg/c2db/bench_asm/publish.s"
+  }
+]

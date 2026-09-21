@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>c2db — Sovereign MVCC Embedded Database & Predicate Pushdown</title>
+    <meta name="description" content="100% Pure Go 1.27 SIMD (0-CGO) transactional embedded database engine. 1 TB/shard, 9.5 ns MVCC pin, 54 ns Predicate Pushdown.">
+    <meta property="og:title" content="c2db — Sovereign MVCC Database">
+    <meta property="og:description" content="100% Pure Go 1.27 SIMD (0-CGO) transactional embedded database engine.">
+    <meta property="og:image" content="/og-image.png">
+    <link rel="stylesheet" href="/style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+</head>
+<body>
+    <header class="navbar">
+        <div class="nav-container">
+            <div class="brand">
+                <span class="logo-badge">C2</span>
+                <span class="logo-text">c2db</span>
+                <span class="version-tag">v1.0 • Go 1.27 SIMD</span>
+            </div>
+            <nav class="nav-links">
+                <a href="#playground">Playground</a>
+                <a href="#benchmarks">Benchmarks</a>
+                <a href="#architecture">Architecture</a>
+                <a href="#licensing">Licensing</a>
+                <a href="https://github.com/hazyhaar/c2db" target="_blank" class="btn-github">GitHub</a>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <!-- Hero Section -->
+        <section class="hero">
+            <div class="hero-badge">Agent-First • 0-CGO • 0 B/op MVCC Pin • Hardware-Aligned 16KB</div>
+            <h1 class="hero-title">High-Performance MVCC Embedded Storage Engine</h1>
+            <p class="hero-subtitle">
+                Engineered for autonomous agent runtimes and high-frequency data ingestion. Zero-lock read concurrency, page-level predicate pushdown in ~30 ns, and deterministic O_DIRECT WAL durability.
+            </p>
+            <div class="hero-stats">
+                <div class="stat-card">
+                    <div class="stat-value">9.5 ns</div>
+                    <div class="stat-label">MVCC Pin / Despin (0 B/op)</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-value">1 TB</div>
+                    <div class="stat-label">Addressable / Shard</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-value">~30 ns</div>
+                    <div class="stat-label">Predicate Pushdown</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-value">185k</div>
+                    <div class="stat-label">WAL Tx / Second</div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Interactive Playground -->
+        <section id="playground" class="section">
+            <div class="section-header">
+                <h2>Interactive Engine Playground</h2>
+                <p>Run live queries with Predicate Pushdown and evaluate page-level execution latency in real-time.</p>
+            </div>
+
+            <div class="playground-card">
+                <div class="playground-controls">
+                    <div class="control-group">
+                        <label>Collection / Prefix</label>
+                        <input type="text" id="query-prefix" value="agent:context:" class="input-field">
+                    </div>
+                    <div class="control-group">
+                        <label>Pushdown Field Filter</label>
+                        <input type="text" id="query-field" value="status" class="input-field">
+                    </div>
+                    <div class="control-group">
+                        <label>Expected Value</label>
+                        <input type="text" id="query-value" value="active" class="input-field">
+                    </div>
+                    <div class="control-group">
+                        <label>&nbsp;</label>
+                        <button id="btn-run-query" class="btn-primary">Execute Pushdown Query</button>
+                    </div>
+                </div>
+
+                <div class="playground-result">
+                    <div class="terminal-header">
+                        <span class="dot red"></span><span class="dot yellow"></span><span class="dot green"></span>
+                        <span class="terminal-title">Query Execution Output</span>
+                        <span id="timing-badge" class="timing-badge">Ready</span>
+                    </div>
+                    <pre id="query-output" class="terminal-body">
+// Click "Execute Pushdown Query" to test page-level predicate filtering.
+// Filter evaluation runs at 16KB raw cell level without heap deserialization.
+                    </pre>
+                </div>
+            </div>
+        </section>
+
+        <!-- Benchmarks Section -->
+        <section id="benchmarks" class="section">
+            <div class="section-header">
+                <h2>Verified Micro-Benchmarks</h2>
+                <p>Measured on Linux amd64 hardware isolation. Bit-exact verification against GCC -O2 oracles.</p>
+            </div>
+
+            <div class="bench-grid">
+                <div class="bench-card">
+                    <h3>MVCC Snapshot Pin</h3>
+                    <div class="bench-speed">9.5 ns/op</div>
+                    <p>Zero heap allocations (0 B/op). Atomic generation counter guarantees conflict-free concurrent readers.</p>
+                    <div class="progress-bar"><div class="progress-fill" style="width: 95%;"></div></div>
+                </div>
+                <div class="bench-card">
+                    <h3>Predicate Pushdown</h3>
+                    <div class="bench-speed">31.2 ns/rec</div>
+                    <p>Evaluates JSON and raw cell predicates directly in 16KB page cache, avoiding AST deserialization.</p>
+                    <div class="progress-bar"><div class="progress-fill" style="width: 88%;"></div></div>
+                </div>
+                <div class="bench-card">
+                    <h3>Point Read (Heap Get)</h3>
+                    <div class="bench-speed">58.0 ns/op</div>
+                    <p>Direct btree leaf binary search with zero allocation. Median read under 8 concurrent readers: ~2.1 µs.</p>
+                    <div class="progress-bar"><div class="progress-fill" style="width: 82%;"></div></div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Architecture Section -->
+        <section id="architecture" class="section">
+            <div class="section-header">
+                <h2>Engine Architecture</h2>
+                <p>Built from the ground up for sovereign, deterministic multi-agent systems.</p>
+            </div>
+
+            <div class="arch-cards">
+                <div class="arch-card">
+                    <div class="arch-icon">⚡</div>
+                    <h3>Deterministic O_DIRECT WAL</h3>
+                    <p>Grouped commit pipeline coalesces up to 32 writes within a 2ms window. Scrambled block seals and crash recovery from last durable state.</p>
+                </div>
+                <div class="arch-card">
+                    <div class="arch-icon">🔐</div>
+                    <h3>Multi-Tenant Encryption</h3>
+                    <p>Native ChaCha20/Poly1305 encryption per 16KB page. Key derivation per tenant with post-quantum ML-DSA signing.</p>
+                </div>
+                <div class="arch-card">
+                    <div class="arch-icon">🔌</div>
+                    <h3>Zero-Copy SQLite VFS Bridge</h3>
+                    <p>Drop-in compatibility bridge for modern SQLite runtimes without CGO or external memory overhead.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Commercial Licensing Section -->
+        <section id="licensing" class="section">
+            <div class="section-header">
+                <h2>Commercial Licensing & Enterprise B2B</h2>
+                <p>Licensed under Business Source License 1.1 (BSL 1.1). Free for research, local development, and internal enterprise applications.</p>
+            </div>
+
+            <div class="pricing-grid">
+                <div class="price-card">
+                    <h3>Community & Research</h3>
+                    <div class="price">Free</div>
+                    <div class="price-desc">Under BSL 1.1 Additional Use Grant</div>
+                    <ul class="price-features">
+                        <li>✓ Internal enterprise applications</li>
+                        <li>✓ Local development & testing</li>
+                        <li>✓ Public testnet deployments</li>
+                        <li>✓ Academic research & evaluation</li>
+                    </ul>
+                </div>
+                <div class="price-card featured">
+                    <div class="popular-badge">Commercial Production</div>
+                    <h3>Enterprise Cloud / DBaaS</h3>
+                    <div class="price">Commercial License</div>
+                    <div class="price-desc">For production deployments and cloud services</div>
+                    <ul class="price-features">
+                        <li>✓ Managed DBaaS / Hosted API platforms</li>
+                        <li>✓ Multi-tenant cloud infrastructures</li>
+                        <li>✓ Guaranteed SLAs & Priority Support</li>
+                        <li>✓ Clustering & Distributed consensus modules</li>
+                    </ul>
+                    <a href="mailto:contact@hazyhaar.fr?subject=c2db%20Commercial%20License%20Inquiry" class="btn-primary" style="text-align: center; margin-top: 1.5rem; text-decoration: none;">Contact Sales</a>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="footer">
+        <div class="footer-container">
+            <p>© 2026 HazyHaar. All rights reserved. Licensed under Business Source License 1.1 (converts to Apache 2.0 on 2028-09-21).</p>
+            <p>Inquiries: <a href="mailto:contact@hazyhaar.fr">contact@hazyhaar.fr</a> • Paris, France</p>
+        </div>
+    </footer>
+
+    <script src="/app.js"></script>
+</body>
+</html>

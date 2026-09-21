@@ -1,0 +1,218 @@
+[
+  {
+    "engine": "c2db",
+    "stratum": "L3",
+    "op": "put",
+    "n": 512,
+    "ns_per_op": 50918.525390625,
+    "allocs_per_op": 0,
+    "kernel": {
+      "user_ns": 18606000,
+      "sys_ns": 2075000,
+      "max_rss_kb": 290416,
+      "min_flt": 161,
+      "maj_flt": 0,
+      "nvcsw": 37,
+      "nivcsw": 1,
+      "sysc_read": 7,
+      "sysc_write": 16,
+      "read_bytes": 0,
+      "write_bytes": 131072
+    },
+    "l1": {
+      "cycles": 69700584,
+      "instructions": 155838544,
+      "branches": 34839123,
+      "branch_misses": 36358,
+      "l1d_misses": 844385,
+      "ipc": 2.2358283827291894,
+      "ok": true
+    },
+    "note": "put_isole_fsync_journal"
+  },
+  {
+    "engine": "sqlite",
+    "stratum": "L4",
+    "op": "put",
+    "n": 512,
+    "ns_per_op": 373334.767578125,
+    "allocs_per_op": 0,
+    "kernel": {
+      "user_ns": 5722000,
+      "sys_ns": 12551000,
+      "max_rss_kb": 290416,
+      "min_flt": 130,
+      "maj_flt": 0,
+      "nvcsw": 1851,
+      "nivcsw": 46,
+      "sysc_read": 31,
+      "sysc_write": 2305,
+      "read_bytes": 0,
+      "write_bytes": 7036928
+    },
+    "l1": {
+      "cycles": 26905045,
+      "instructions": 34558164,
+      "branches": 5742590,
+      "branch_misses": 79572,
+      "l1d_misses": 299461,
+      "ipc": 1.2844492176095599,
+      "ok": true
+    },
+    "note": "wal_synchronous_full"
+  },
+  {
+    "engine": "c2db",
+    "stratum": "L3",
+    "op": "get",
+    "n": 512,
+    "ns_per_op": 1458.001953125,
+    "allocs_per_op": 0,
+    "kernel": {
+      "user_ns": 769000,
+      "sys_ns": 0,
+      "max_rss_kb": 290416,
+      "min_flt": 0,
+      "maj_flt": 0,
+      "nvcsw": 1,
+      "nivcsw": 0,
+      "sysc_read": 7,
+      "sysc_write": 0,
+      "read_bytes": 0,
+      "write_bytes": 0
+    },
+    "l1": {
+      "cycles": 4075543,
+      "instructions": 18178590,
+      "branches": 6342449,
+      "branch_misses": 6133,
+      "l1d_misses": 1116,
+      "ipc": 4.460409324597974,
+      "ok": true
+    },
+    "note": "get_pin_live"
+  },
+  {
+    "engine": "sqlite",
+    "stratum": "L4",
+    "op": "get",
+    "n": 512,
+    "ns_per_op": 5234.4453125,
+    "allocs_per_op": 0,
+    "kernel": {
+      "user_ns": 1608000,
+      "sys_ns": 1078000,
+      "max_rss_kb": 290416,
+      "min_flt": 6,
+      "maj_flt": 0,
+      "nvcsw": 0,
+      "nivcsw": 2,
+      "sysc_read": 7,
+      "sysc_write": 0,
+      "read_bytes": 0,
+      "write_bytes": 0
+    },
+    "l1": {
+      "cycles": 13184398,
+      "instructions": 29223484,
+      "branches": 5734884,
+      "branch_misses": 29738,
+      "l1d_misses": 169411,
+      "ipc": 2.2165201626953315,
+      "ok": true
+    }
+  },
+  {
+    "engine": "c2db",
+    "stratum": "L3",
+    "op": "put_batch",
+    "n": 32,
+    "ns_per_op": 25354.6875,
+    "allocs_per_op": 0,
+    "kernel": {
+      "user_ns": 753000,
+      "sys_ns": 0,
+      "max_rss_kb": 290416,
+      "min_flt": 0,
+      "maj_flt": 0,
+      "nvcsw": 11,
+      "nivcsw": 0,
+      "sysc_read": 7,
+      "sysc_write": 11,
+      "read_bytes": 0,
+      "write_bytes": 167936
+    },
+    "l1": {
+      "cycles": 3570760,
+      "instructions": 18339341,
+      "branches": 2944829,
+      "branch_misses": 6148,
+      "l1d_misses": 4676,
+      "ipc": 5.13597693488221,
+      "ok": true
+    },
+    "note": "un_fdatasync_lot"
+  },
+  {
+    "engine": "sqlite",
+    "stratum": "L4",
+    "op": "put_batch",
+    "n": 32,
+    "ns_per_op": 18720.8125,
+    "allocs_per_op": 0,
+    "kernel": {
+      "user_ns": 290000,
+      "sys_ns": 0,
+      "max_rss_kb": 290416,
+      "min_flt": 3,
+      "maj_flt": 0,
+      "nvcsw": 8,
+      "nivcsw": 0,
+      "sysc_read": 7,
+      "sysc_write": 16,
+      "read_bytes": 0,
+      "write_bytes": 40960
+    },
+    "l1": {
+      "cycles": 993474,
+      "instructions": 1729271,
+      "branches": 302459,
+      "branch_misses": 3939,
+      "l1d_misses": 8748,
+      "ipc": 1.740630353688169,
+      "ok": true
+    },
+    "note": "transaction"
+  },
+  {
+    "engine": "c2db",
+    "stratum": "L5",
+    "op": "put_sous_get",
+    "n": 128,
+    "ns_per_op": 77908.6640625,
+    "allocs_per_op": 0,
+    "kernel": {
+      "user_ns": 49309000,
+      "sys_ns": 2460000,
+      "max_rss_kb": 290416,
+      "min_flt": 705,
+      "maj_flt": 0,
+      "nvcsw": 380,
+      "nivcsw": 4,
+      "sysc_read": 8,
+      "sysc_write": 5,
+      "read_bytes": 0,
+      "write_bytes": 36864
+    },
+    "l1": {
+      "cycles": 17511534,
+      "instructions": 56954802,
+      "branches": 18002203,
+      "branch_misses": 38130,
+      "l1d_misses": 40651,
+      "ipc": 3.2524164930382455,
+      "ok": true
+    },
+    "note": "1_writer_4_readers"
+  }
+]

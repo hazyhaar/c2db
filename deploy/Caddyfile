@@ -1,0 +1,7 @@
+c2db.hazyhaar.fr {
+    reverse_proxy 127.0.0.1:8556
+
+    log {
+        output file /var/log/caddy/c2db.log
+    }
+}

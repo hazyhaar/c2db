@@ -1,0 +1,33 @@
+[Unit]
+Description=c2db — portail web et simulateur MVCC c2db.hazyhaar.fr
+After=network.target
+
+[Service]
+Type=simple
+DynamicUser=yes
+StateDirectory=c2db
+ExecStart=/opt/c2db/c2db -port 8556 -db-path /var/lib/c2db
+Restart=on-failure
+RestartSec=5
+KillSignal=SIGTERM
+TimeoutStopSec=30
+LimitNOFILE=65536
+
+# Durcissement — surface d'attaque réduite
+NoNewPrivileges=true
+PrivateTmp=true
+PrivateDevices=true
+ProtectSystem=strict
+ProtectHome=true
+ProtectKernelTunables=true
+ProtectKernelModules=true
+ProtectControlGroups=true
+ProtectClock=true
+ProtectHostname=true
+RestrictSUIDSGID=true
+RestrictRealtime=true
+RestrictNamespaces=true
+LockPersonality=true
+
+[Install]
+WantedBy=multi-user.target
